@@ -28,10 +28,16 @@ const helpEmbed = new Discord.MessageEmbed()
 client.once('ready', () => {
 	console.log('HI, My nane is Julieto Perusiaa');
 });
+
+client.on('ready', () => {
+	client.user.setActivity('with your mom', { type: 'PLAYING' });
+});
+
+
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-	const args = message.content.slice(prefix.length).trim().split(' ');
+	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
 	if (message.content === `${prefix}hello`) {
 		message.channel.send(`Hi there, ${message.author.username}! :D`);
@@ -43,7 +49,7 @@ client.on('message', message => {
 		message.channel.send(`Command name: ${command}\nArguments: ${args}`);
 	}
 	else if (command === 'whoareyou') {
-		message.channel.send('Hz is my husbando <3<3');
+		message.channel.send('istri nya cloverjoy');
 	}
 	else if (command === 'help') {
 		message.channel.send(helpEmbed);
@@ -52,5 +58,6 @@ client.on('message', message => {
 		message.channel.send('@here DOTS??');
 	}
 });
+
 
 client.login(token);
