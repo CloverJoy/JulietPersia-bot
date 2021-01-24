@@ -28,6 +28,9 @@ client.on('message', message => {
 		}
 		message.channel.send(`Command name: ${command}\nArguments: ${args}`);
 	}
+	else if (command === 'whoareyou') {
+		message.channel.send('Hz is my husbando <3<3');
+	}
 });
 
 client.login(token);
