@@ -11,6 +11,20 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
+const helpEmbed = new Discord.MessageEmbed()
+	.setColor('#7fffd4')
+	.setTitle('Hi there! I\'m Juliet Persia! Nice to meet you!')
+	.setAuthor('Juliet Persia', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
+	.setImage('https://i.ytimg.com/vi/A5pchbPE2Rc/maxresdefault.jpg')
+	.setDescription('So you need help? Here is my help :D.')
+	.addFields(
+		{ name: 'Current command available', value: 'ver 0.0.1' },
+		{ name: 'Hello!', value: 'type ~hello', inline: true },
+		{ name: 'Introduction', value: 'type ~whoareyou', inline: true },
+		{ name: 'Help', value: 'type ~help', inline: true },
+	);
+
+
 client.once('ready', () => {
 	console.log('HI, My nane is Julieto Perusiaa');
 });
@@ -30,6 +44,12 @@ client.on('message', message => {
 	}
 	else if (command === 'whoareyou') {
 		message.channel.send('Hz is my husbando <3<3');
+	}
+	else if (command === 'help') {
+		message.channel.send(helpEmbed);
+	}
+	else if (command === 'dots') {
+		message.channel.send('@here DOTS??');
 	}
 });
 
