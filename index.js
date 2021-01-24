@@ -27,11 +27,20 @@ const helpEmbed = new Discord.MessageEmbed()
 
 client.once('ready', () => {
 	console.log('HI, My nane is Julieto Perusiaa');
+	client.user.setActivity('Type ~help', { type: 'PLAYING' });
 });
 
-client.on('ready', () => {
-	client.user.setActivity('with your mom', { type: 'PLAYING' });
+client.on('message', async message => {
+	// Join the same voice channel of the author of the message
+	if (message.member.voice.channel) {
+		console.log(message.member.voice.channel)
+		const connection = await message.member.voice.channel.join();
+		connection.disconnect();
+		
+	}
 });
+
+
 
 
 client.on('message', message => {
@@ -39,8 +48,9 @@ client.on('message', message => {
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
+	
 	if (message.content === `${prefix}hello`) {
-		message.channel.send(`Hi there, ${message.author.username}! :D`);
+		message.channel.send(`Hi there, ${message.author}! :D`);
 	}
 	else if (command === 'args-info') {
 		if (!args.length) {
