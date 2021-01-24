@@ -1,0 +1,17 @@
+{
+  "name": "julietpersia",
+  "version": "1.0.0",
+  "description": "Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CloverJoy",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "eslint": "^7.18.0",
+    "nodemon": "^2.0.7"
+  }
+}
