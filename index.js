@@ -50,6 +50,7 @@ client.on('message', message => {
 	}
 	else if (command === 'whoareyou') {
 		message.channel.send('istri nya cloverjoy');
+		console.log(message);
 	}
 	else if (command === 'help') {
 		message.channel.send(helpEmbed);
