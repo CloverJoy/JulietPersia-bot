@@ -14,7 +14,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('HI, My nane is Julieto Perusiaa');
-	client.user.setActivity('Type ~help', { type: 'PLAYING' });
+	client.user.setActivity('you :)', { type: 'LISTENING' });
 });
 
 client.on('message', async message => {
@@ -25,22 +25,53 @@ client.on('message', async message => {
 	// Join the same voice channel of the author of the message
 	if (message.member.voice.channel && command === 'vc') {
 		const connection = await message.member.voice.channel.join();
-		connection.disconnect();
+		const dispatcher = connection.play('price.mp3');
+
+		dispatcher.on('start', () => {
+			console.log('audio.mp3 is now playing!');
+		});
+
+		dispatcher.on('finish', () => {
+			console.log('audio.mp3 has finished playing!');
+			connection.disconnect();
+			message.channel.send('bye!')
+		});
+
+		dispatcher.on('error', console.error);
 	}
+	// makes bot to leave voice channel when user is in channel. 
+	if (message.content.startsWith(prefix + 'leave')) {
+		if (!message.guild.voice) {
+			message.reply('Im not in the channel sir');
+		} else {
+			message.guild.voice.channel.leave()
+			console.log(message.guild.voice.channel);
+		}
+	  }
 });
 
 
 
-client.on('message', message => {
+client.on('message',  message => {
+	// Cuma buat ngetroll channel sendiri lol
+	if (message.content.toLowerCase().includes('dots?') || message.content.toLowerCase().includes('apex?') || message.content.toLowerCase().includes('play?')) {
+		message.reply('Hezki pass dulu, lagi bootcamp')
+	}
+
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
-
+	
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
-	const command = args.shift().toLowerCase();
+	const commandName = args.shift().toLowerCase();
 
-	if (!client.commands.has(command)) return;
+	if (!client.commands.has(commandName)) return;
+
+	const command = client.commands.get(commandName);
+	if (command.args && !args.length) {
+		return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
+	}
 	
 	try {
-	client.commands.get(command).execute(message, args);
+	command.execute(message, args);
 	} catch (error) {
 	console.error(error);
 	message.reply('there was an error trying to execute that command!');
