@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
+const { connect } = require('http2');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -11,51 +12,80 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
-const helpEmbed = new Discord.MessageEmbed()
-	.setColor('#7fffd4')
-	.setTitle('Hi there! I\'m Juliet Persia! Nice to meet you!')
-	.setAuthor('Juliet Persia', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
-	.setImage('https://i.ytimg.com/vi/A5pchbPE2Rc/maxresdefault.jpg')
-	.setDescription('So you need help? Here is my help :D.')
-	.addFields(
-		{ name: 'Current command available', value: 'ver 0.0.1' },
-		{ name: 'Hello!', value: 'type ~hello', inline: true },
-		{ name: 'Introduction', value: 'type ~whoareyou', inline: true },
-		{ name: 'Help', value: 'type ~help', inline: true },
-	);
-
-
 client.once('ready', () => {
-	console.log('HI, My nane is Julieto Perusiaa');
+	console.log('Jurieto Perushiaa desu!');
+	client.user.setActivity('you :)', { type: 'LISTENING' });
 });
 
-client.on('ready', () => {
-	client.user.setActivity('with your mom', { type: 'PLAYING' });
-});
-
-
-client.on('message', message => {
+client.on('message', async message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
-	if (message.content === `${prefix}hello`) {
-		message.channel.send(`Hi there, ${message.author.username}! :D`);
+	// Join the same voice channel of the author of the message
+	if (message.member.voice.channel && command === 'vc') {
+		const connection = await message.member.voice.channel.join();
+		const dispatcher = connection.play('price.mp3');
+
+		dispatcher.on('start', () => {
+			console.log('audio.mp3 is now playing!');
+		});
+
+		dispatcher.on('finish', () => {
+			console.log('audio.mp3 has finished playing!');
+			connection.disconnect();
+			message.channel.send('bye!')
+		});
+
+		dispatcher.on('error', console.error);
 	}
-	else if (command === 'args-info') {
-		if (!args.length) {
-			return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
+	// makes bot to leave voice channel when user is in channel. 
+	if (message.content.startsWith(prefix + 'leave')) {
+		if (!message.guild.voice) {
+			message.reply('Im not in the channel sir');
+		} else {
+			message.guild.voice.channel.leave()
+			console.log(message.guild.voice.channel);
 		}
-		message.channel.send(`Command name: ${command}\nArguments: ${args}`);
+	  }
+});
+
+
+
+client.on('message',  message => {
+	// Cuma buat ngetroll channel sendiri lol
+	if (message.content.toLowerCase().includes('dots?') || message.content.toLowerCase().includes('apex?') || message.content.toLowerCase().includes('play') && message.content.toLowerCase().includes('?')
+	|| message.content.toLowerCase().includes('@here') && message.content.toLowerCase().includes('play') || message.content.toLowerCase().includes('@everyone') && message.content.toLowerCase().includes('play')) {
+		message.reply('Hezki pass dulu, lagi bootcamp')
+		console.log('Ada yang ngajak main dots tuh'); 
 	}
-	else if (command === 'whoareyou') {
-		message.channel.send('istri nya cloverjoy');
+	//kalo di mention
+	if (message.content.includes('<@!802744454107758624>')) {
+		if (message.author.username === 'CloverJoy') {
+			message.reply(' iyaa sayang?? <3<3')
+			return;
+		}
+		message.reply(' ?');
 	}
-	else if (command === 'help') {
-		message.channel.send(helpEmbed);
+	// End of troll only
+
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	
+	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const commandName = args.shift().toLowerCase();
+
+	if (!client.commands.has(commandName)) return;
+
+	const command = client.commands.get(commandName);
+	if (command.args && !args.length) {
+		return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
 	}
-	else if (command === 'dots') {
-		message.channel.send('@here DOTS??');
+	
+	try {
+	command.execute(message, args);
+	} catch (error) {
+	console.error(error);
+	message.reply('there was an error trying to execute that command!');
 	}
 });
 
