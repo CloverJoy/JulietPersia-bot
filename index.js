@@ -54,17 +54,17 @@ client.on('message', async message => {
 
 client.on('message',  message => {
 	// Cuma buat ngetroll channel sendiri lol
-	if (message.content.toLowerCase().includes('dots?') || message.content.toLowerCase().includes('apex?') || message.content.toLowerCase().includes('play') && message.content.toLowerCase().includes('?')
-	|| message.content.toLowerCase().includes('@here') && message.content.toLowerCase().includes('play') || message.content.toLowerCase().includes('@everyone') && message.content.toLowerCase().includes('play')) {
-		message.reply('Hezki pass dulu, lagi bootcamp')
-		console.log('Ada yang ngajak main dots tuh'); 
-	}
+	// if (message.content.toLowerCase().includes('dots?') || message.content.toLowerCase().includes('apex?') || message.content.toLowerCase().includes('play') && message.content.toLowerCase().includes('?')
+	// || message.content.toLowerCase().includes('@here') && message.content.toLowerCase().includes('play') || message.content.toLowerCase().includes('@everyone') && message.content.toLowerCase().includes('play')) {
+	// 	message.reply('Hezki pass dulu, lagi bootcamp')
+	// 	console.log('Ada yang ngajak main dots tuh'); 
+	// }
 	//kalo di mention
 	if (message.content.includes('<@!802744454107758624>')) {
 		if (message.author.username === 'CloverJoy') {
 			message.reply(' iyaa sayang?? <3<3')
 			return;
-		}
+		}	
 		message.reply(' ?');
 	}
 	// End of troll only
