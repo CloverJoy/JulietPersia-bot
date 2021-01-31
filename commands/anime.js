@@ -41,6 +41,12 @@ module.exports = {
                 .setTitle(data.title)
                 .setAuthor('Juliet Persia (thanks to Jikan API! :D)', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
                 .setDescription(data.synopsis)
+                .addFields(
+                    {name: 'Aired', value: moment(data.airing_start).format('MMMM DD YYYY')},
+                    {name: 'source', value: data.source},
+                    {name: 'Score', value: data.score},
+                    {name: 'link', value: data.url},
+                )
                 .setImage(data.image_url)
                 message.channel.send(todayEmbed);
             });	
