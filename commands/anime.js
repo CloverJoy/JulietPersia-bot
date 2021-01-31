@@ -5,25 +5,12 @@ const today = moment().format('dddd').toLowerCase();
 const todayComplete = moment().format('MMMM DD YYYY')
 const dates = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
-// const animeEmbed = new Discord.MessageEmbed()
-// 	.setColor('#7fffd4')
-// 	.setTitle(`Anime for ${today} is: `)
-// 	.setAuthor('Juliet Persia', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
-// 	.setImage('https://i.ytimg.com/vi/A5pchbPE2Rc/maxresdefault.jpg')
-// 	.setDescription('So you need help? Here is my help :D.')
-// 	.addFields(
-// 		{ name: 'Current command available', value: 'ver 0.0.1' },
-// 		{ name: 'Hello!', value: 'type ~hello', inline: true },
-// 		{ name: 'Introduction', value: 'type ~whoareyou', inline: true },
-// 		{ name: 'Help', value: 'type ~help', inline: true },
-// 	);
-
-const getAnime = (arg) => {
-    axios.get(`https://api.jikan.moe/v3/schedule/${arg}`)
-        .then((result) => {
-            return result.data;
-        });
-};
+const noNullNumber = (num) => {
+    if (num === null) {
+        return 'Not yet scored';
+    } 
+    return num;
+}
 
 module.exports = {
 	name: 'anime',
@@ -44,7 +31,7 @@ module.exports = {
                 .addFields(
                     {name: 'Aired', value: moment(data.airing_start).format('MMMM DD YYYY')},
                     {name: 'source', value: data.source},
-                    {name: 'Score', value: data.score},
+                    {name: 'Score', value: noNullNumber(data.score)},
                     {name: 'link', value: data.url},
                 )
                 .setImage(data.image_url)
@@ -60,12 +47,34 @@ module.exports = {
                 .setColor('#7fffd4')
                 .setTitle(`Anime for ${todayComplete}`)
                 .setAuthor('Juliet Persia (thanks to Jikan API! :D)', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
-                .addFields(data.map(anime => {
-                    return {name: anime.title, value: anime.url}
+                .setDescription('This is the list of anime for today! If you want the detail about the anime, type: ```~anime today (number beside the title)```')
+                .addFields(data.map((anime, idx) => {
+                    return {name: `${anime.title} (${idx})`, value: anime.url};
                 }))
                 .setImage(data[0].image_url)
                 message.channel.send(listEmbed);
             });	
+        }
+        if (args.length === 2 && parseInt(args[1])) {
+            const idx = Math.floor(parseInt(args[1]));
+            axios.get(`https://api.jikan.moe/v3/schedule/${today}`)
+            .then((result) => {
+            const data = result.data[today][idx];
+            const todayEmbed = new Discord.MessageEmbed()
+            .setColor('#7fffd4')
+            .setTitle(data.title)
+            .setAuthor('Juliet Persia (thanks to Jikan API! :D)', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
+            .setDescription(data.synopsis)
+            .addFields(
+                {name: 'Aired', value: moment(data.airing_start).format('MMMM DD YYYY')},
+                {name: 'source', value: data.source},
+                {name: 'Score', value: noNullNumber(data.score)},
+                {name: 'link', value: data.url},
+            )
+            .setImage(data.image_url)
+            message.channel.send(`Here is the information about ${data.title}`);
+            message.channel.send(todayEmbed);
+        });	
         }
         
 	},
