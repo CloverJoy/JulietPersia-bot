@@ -13,12 +13,14 @@ const noNullNumber = (num) => {
 }
 
 module.exports = {
-	name: 'anime',
-    description: 'Information about the arguments provided.',
+	name: 'ani',
+    description: 'Anime info feat Jikan API.',
     args: true,
-	execute(message, args) {
-		if (args.length > 0 && args[0].toLowerCase() === 'today' && args[1] === 'random') {
-            message.channel.send(`Here is random ongoing anime for ${args[0]}: ${today}`);
+	async execute(message, args) {
+        const isToday = args[0].toLowerCase() === 'today';
+        const isManga = args[0].toLowerCase() === 'mangasearch';
+		if (args.length > 0 && isToday && args[1] === 'random') {
+            message.reply(`Here is random ongoing anime for ${args[0]}: ${today}`);
             axios.get(`https://api.jikan.moe/v3/schedule/${today}`)
                 .then((result) => {
                 const randomNumber = Math.floor(Math.random() * result.data[today].length)
@@ -38,8 +40,8 @@ module.exports = {
                 message.channel.send(todayEmbed);
             });	
         }
-        if (args.length === 1 && args[0].toLowerCase() === 'today') {
-            message.channel.send(`Here is ongoing anime list for today`);
+        if (args.length === 1 && isToday) {
+            message.reply(`Here is ongoing anime list for today`);
             axios.get(`https://api.jikan.moe/v3/schedule/${today}`)
                 .then((result) => {
                 const data = result.data[today];
@@ -55,7 +57,7 @@ module.exports = {
                 message.channel.send(listEmbed);
             });	
         }
-        if (args.length === 2 && parseInt(args[1])) {
+        if (args.length === 2 && parseInt(args[1]) && isToday) {
             const idx = Math.floor(parseInt(args[1]));
             axios.get(`https://api.jikan.moe/v3/schedule/${today}`)
             .then((result) => {
@@ -72,10 +74,36 @@ module.exports = {
                 {name: 'link', value: data.url},
             )
             .setImage(data.image_url)
-            message.channel.send(`Here is the information about ${data.title}`);
+            message.reply(`Here is the information about ${data.title}`);
             message.channel.send(todayEmbed);
         });	
         }
-        
+        if (isManga) {
+            const query = (args.slice(1).join(' '));
+            message.reply('Initiate manga search, sorry if this isn\'t accurate :cry:.. But I\'ll try  :)')
+            if (query) {
+                const res = await axios.get('https://api.jikan.moe/v3/search/manga', {
+                    params: {
+                        q: query,
+                        limit: 1
+                    }
+                });
+                // console.log(res.data.results)
+                const data = res.data.results[0];
+                const mangaSearchEmbed = new Discord.MessageEmbed()
+                .setColor('#7fffd4')
+                .setTitle(data.title)
+                .setAuthor('Juliet Persia (thanks to Jikan API! :D)', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
+                .setDescription(data.synopsis)
+                .addFields(
+                    {name: 'Start date', value: moment(data.start_date).format('MMMM DD YYYY')},
+                    {name: 'type', value: data.type},
+                    {name: 'Score', value: noNullNumber(data.score)},
+                    {name: 'link', value: data.url},
+                )
+                .setImage(data.image_url)
+                message.channel.send(mangaSearchEmbed);
+            }  
+        }
 	},
 };

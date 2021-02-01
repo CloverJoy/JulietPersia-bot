@@ -14,7 +14,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Jurieto Perushiaa desu!');
-	client.user.setActivity('you :)', { type: 'LISTENING' });
+	client.user.setActivity('~ani today', { type: 'LISTENING' });
 });
 
 client.on('message', async message => {
