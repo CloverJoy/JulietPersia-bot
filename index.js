@@ -1,9 +1,14 @@
 const fs = require('fs');
+const express = require('express');
+const app = express();
+
+app.use(express.static('public'));
 const Discord = require('discord.js');
 // const { prefix, token } = require('./config.json');
 const { connect } = require('http2');
 require('dotenv').config();
 const prefix = '~';
+const port = process.env.PORT || 80;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -94,3 +99,6 @@ client.on('message',  message => {
 
 
 client.login(process.env.JULIET_TOKEN);
+app.listen(port, () => {
+	console.log(`Juliet Persia is listening at http://localhost:${port}`);
+});
