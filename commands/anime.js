@@ -79,7 +79,7 @@ module.exports = {
                 message.channel.send(listEmbed);
             });	
         }
-        if (args.length === 2 && parseInt(args[1]) && isToday) {
+        if (args.length === 2 && (parseInt(args[1]) || parseInt(args[1]) === 0) && isToday) {
             const idx = Math.floor(parseInt(args[1]));
             axios.get(`https://api.jikan.moe/v3/schedule/${today}`)
             .then((result) => {

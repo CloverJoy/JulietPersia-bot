@@ -4,7 +4,7 @@
   "description": "Discord bot",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "CloverJoy",
@@ -13,6 +13,7 @@
     "@discordjs/opus": "^0.3.3",
     "axios": "^0.21.1",
     "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
     "eslint": "^7.18.0",
     "ffmpeg-static": "^4.2.7",
     "moment": "^2.29.1",

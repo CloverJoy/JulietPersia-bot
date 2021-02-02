@@ -2,6 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const { connect } = require('http2');
+require('dotenv').config();
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -54,11 +55,13 @@ client.on('message', async message => {
 
 client.on('message',  message => {
 	// Cuma buat ngetroll channel sendiri lol
-	// if (message.content.toLowerCase().includes('dots?') || message.content.toLowerCase().includes('apex?') || message.content.toLowerCase().includes('play') && message.content.toLowerCase().includes('?')
-	// || message.content.toLowerCase().includes('@here') && message.content.toLowerCase().includes('play') || message.content.toLowerCase().includes('@everyone') && message.content.toLowerCase().includes('play')) {
-	// 	message.reply('Hezki pass dulu, lagi bootcamp')
-	// 	console.log('Ada yang ngajak main dots tuh'); 
-	// }
+	
+
+	if (message.content.toLowerCase().includes('dots') && message.content.toLocaleLowerCase().includes('?') || message.content.toLowerCase().includes('apex?') || message.content.toLowerCase().includes('play') && message.content.toLowerCase().includes('?')
+	|| message.content.toLowerCase().includes('@here') && message.content.toLowerCase().includes('play') || message.content.toLowerCase().includes('@everyone') && message.content.toLowerCase().includes('play')) {
+		message.reply('Hezki pass dulu, lagi bootcamp')
+		console.log('Ada yang ngajak main dots tuh'); 
+	}
 	//kalo di mention
 	if (message.content.includes('<@!802744454107758624>')) {
 		if (message.author.username === 'CloverJoy') {
@@ -68,9 +71,8 @@ client.on('message',  message => {
 		message.reply(' ?');
 	}
 	// End of troll only
-
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
-	
+
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
@@ -90,4 +92,4 @@ client.on('message',  message => {
 });
 
 
-client.login(token);
+client.login(process.env.JULIET_TOKEN);
