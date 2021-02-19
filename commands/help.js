@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const Discord = require('discord.js');
 const helpEmbed = new Discord.MessageEmbed()
 	.setColor('#7fffd4')
@@ -10,6 +11,8 @@ const helpEmbed = new Discord.MessageEmbed()
 		{ name: 'Hello!', value: 'type ~hello', inline: true },
 		{ name: 'Introduction', value: 'type ~whoareyou', inline: true },
 		{ name: 'Help', value: 'type ~help', inline: true },
+		{ name: 'Anime information!', value: 'type ~ani', inline: true },
+		{ name: 'Bitcoin rate information!', value: 'type ~btc', inline: true },
 	]);
 
 module.exports = {

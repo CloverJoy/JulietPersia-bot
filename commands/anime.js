@@ -30,7 +30,7 @@ module.exports = {
 		        { name: `Today's anime!`, value: '```~ani today / ~ani today random```'},
 		        { name: `Anime Search`, value: '```~ani search YOURQUERY```'},
                 { name: `Manga Search`, value: '```~ani mangasearch YOURQUERY```' },
-                { name: `Character Search`, value: '```~ani charasearch YOURQUERY```' },
+                { name: `Character Search`, value: '```~ani chara YOURQUERY```' },
             ]);
             message.reply(helpEmbed);
             return;
