@@ -40,6 +40,7 @@ module.exports = {
         const isManga = args[0].toLowerCase() === 'mangasearch';
         const isAnime = args[0].toLowerCase() === 'search';
         const isChara = args[0].toLowerCase() === 'chara';
+        const isQuote = args[0].toLowerCase() === 'quote';
 
 		if (args.length > 0 && isToday && args[1] === 'random') {
             message.reply(`Here is random ongoing anime for ${args[0]}: ${today}`);

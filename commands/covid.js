@@ -37,7 +37,7 @@ module.exports = {
                     {name: `total deaths:`, value: deaths},
                     {name: 'Today deaths:', value: todayDeaths},
                     {name: 'Total recovered:', value:recovered},
-                    {name: 'Today revocered:', value: todayRecovered},
+                    {name: 'Today recovered:', value: todayRecovered},
                 )
                 .setImage(countryInfo.flag)
                 message.channel.send(covidEmbed);

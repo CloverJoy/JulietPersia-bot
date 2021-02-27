@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Jurieto Perushiaa desu!');
-	client.user.setActivity('~btc', { type: 'LISTENING' });
+	client.user.setActivity('~covid [COUNTRY]', { type: 'LISTENING' });
 });
 
 
@@ -28,10 +28,10 @@ client.on('message', message => {
 	// kalo di mention
 	if (message.content.includes('<@!802744454107758624>')) {
 		if (message.author.username === 'CloverJoy') {
-			message.reply(' iyaa sayang?? <3<3');
+			message.reply(' Hi master! how can I help you?  💖💖 ');
 			return;
 		}
-		message.reply(' ?');
+		message.reply('How can I help you? ~help for more information!');
 	}
 	// End of troll only
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
