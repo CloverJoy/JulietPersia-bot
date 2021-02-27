@@ -13,6 +13,8 @@ const helpEmbed = new Discord.MessageEmbed()
 		{ name: 'Help', value: 'type ~help', inline: true },
 		{ name: 'Anime information!', value: 'type ~ani', inline: true },
 		{ name: 'Bitcoin rate information!', value: 'type ~btc', inline: true },
+		{ name: 'Magic the gathering information', value: 'type ~mtg [card name]', inline: true },
+		{ name: 'COVID-19 information', value: 'type ~covid [country name]', inline: true },
 	]);
 
 module.exports = {

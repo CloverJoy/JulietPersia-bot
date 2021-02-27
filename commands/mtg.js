@@ -17,6 +17,7 @@ module.exports = {
         const mtgEmbed = new Discord.MessageEmbed()
                 .setColor('#7fffd4')
                 .setTitle(name)
+                .setThumbnail('https://i.pinimg.com/originals/49/ca/a7/49caa737c24b38ac4ab196e2314f39e9.png')
                 .setAuthor('Juliet Persia (Powered by magicthegathering.io)', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
                 .setDescription(text)
                 .addFields(
