@@ -4,3 +4,4 @@ Powered by Discord.JS & NodeJS.
 Features:
 1. Search today anime and search anime
 2. Bitcoin price
+3. country covid19 information.
