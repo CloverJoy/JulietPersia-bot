@@ -4,7 +4,7 @@ module.exports = {
     args: true,
 	execute(message, args) {
 		if (args[0] === 'foo' && args.length > 0) {
-            console.log(args)
+      console.log(args)
 			return message.channel.send(`Playing ${args.join(' ')}`);
 		}
 

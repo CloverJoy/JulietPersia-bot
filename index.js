@@ -4,10 +4,16 @@ const app = express();
 
 app.use(express.static('public'));
 const Discord = require('discord.js');
-// const { prefix, token } = require('./config.json');
+const Filter = require('bad-words');
+const filter = new Filter();
+
+let indogsBadWords = ['ngentot', 'kontol', 'anjing', 'bangsat', 'memek', 'toket', 'bangsat', 'titit', 'jancok', 'falih', 'cibai', 'putang', 'bobo', 'kinang', 'pukimak', 'cibaikia', 'entot', 'kntl', 'mmk'];
+filter.addWords(...indogsBadWords);
+
 require('dotenv').config();
+
 const prefix = '~';
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -20,7 +26,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Jurieto Perushiaa desu!');
-	client.user.setActivity('~covid [COUNTRY]', { type: 'LISTENING' });
+	client.user.setActivity('On Maintenance', { type: 'STREAMING', url: 'https://www.youtube.com/watch?v=rRzxEiBLQCA' });
 });
 
 
@@ -33,6 +39,10 @@ client.on('message', message => {
 		}
 		message.reply('How can I help you? ~help for more information!');
 	}
+
+	if (filter.isProfane(message.content)) {
+		message.reply('Jangan ngomong kasar dong!!');
+	};
 	// End of troll only
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -51,7 +61,7 @@ client.on('message', message => {
 	}
 	catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		message.reply('There is no alarm or there was an error trying to execute that command!');
 	}
 });
 

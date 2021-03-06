@@ -9,7 +9,7 @@ module.exports = {
         try {
         message.reply(`I will try to find ${args.join(' ')} for you!`);
         const res = await axios.get(`https://api.magicthegathering.io/v1/cards`, {params: {name: args.join(' '), pageSize: 1}});
-        if (res.data.cards.length === 0) { 
+        if (res.data.cards.length === 0) {
             message.reply('Sorry, I cannot find your card :(');
             return;
         };
@@ -22,16 +22,16 @@ module.exports = {
                 .setDescription(text)
                 .addFields(
                     {name: `Type`, value: type},
-                    {name: `Mana Cost`, value: manaCost ? manaCost : 'N/A'},
-                    {name: 'power/toughness', value: power && toughness ? `${power}/${toughness}` : 'N/A'},
+                    {name: `Mana Cost`, value: manaCost ? manaCost : 'N/A', inline: true},
+                    {name: 'power/toughness', value: power && toughness ? `${power}/${toughness}` : 'N/A', inline: true},
                     {name: 'Rarity', value:rarity},
                 )
-                .addFields(legalities.map((item) => {
-                    return {name: `${item.format}`, value: `legality: ${item.legality}`};
+                .addFields(legalities.filter((item) => item.format === 'Commander' || item.format === 'Standard' || item.format === 'Legacy' || item.format === 'Vintage').map((item) => {
+                    return {name: `${item.format}`, value: `legality: ${item.legality}`, inline: true};
                 }))
                 .setImage(imageUrl)
                 message.channel.send(mtgEmbed);
-        } 
+        }
         catch (err) {
             message.reply('Sorry, Internal server error :(')
             console.log(err);
