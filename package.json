@@ -4,7 +4,8 @@
   "description": "Discord bot",
   "main": "index.js",
   "scripts": {
-    "react-dev": "nodemon index.js",
+    "dev": "nodemon index.js",
+    "watch": "webpack -w",
     "start": "webpack && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

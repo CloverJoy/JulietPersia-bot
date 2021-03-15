@@ -7,7 +7,7 @@ const Discord = require('discord.js');
 const Filter = require('bad-words');
 const filter = new Filter();
 
-let indogsBadWords = ['ngentot', 'kontol', 'anjing', 'bangsat', 'memek', 'toket', 'bangsat', 'titit', 'jancok', 'falih', 'cibai', 'putang', 'bobo', 'kinang', 'pukimak', 'cibaikia', 'entot', 'kntl', 'mmk'];
+let indogsBadWords = ['ngentot', 'kontol', 'anjing', 'bangsat', 'memek', 'toket', 'bangsat', 'titit', 'jancok', 'falih', 'cibai', 'putang', 'bobo', 'kinang', 'pukimak', 'cibaikia', 'entot', 'kntl', 'mmk', 'putang ina', 'tang ina'];
 filter.addWords(...indogsBadWords);
 
 require('dotenv').config();
@@ -26,7 +26,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Jurieto Perushiaa desu!');
-	client.user.setActivity('On Maintenance', { type: 'STREAMING', url: 'https://www.youtube.com/watch?v=rRzxEiBLQCA' });
+	client.user.setActivity('Ver. 0.2 | type ~help', { type: 'STREAMING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
 });
 
 
@@ -41,7 +41,7 @@ client.on('message', message => {
 	}
 
 	if (filter.isProfane(message.content)) {
-		message.reply('Jangan ngomong kasar dong!!');
+		message.reply('Please stop saying that! 😞 ');
 	};
 	// End of troll only
 	if (!message.content.startsWith(prefix) || message.author.bot) return;

@@ -1,56 +1,25 @@
 import React, { useState } from 'react';
-import {
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-    Box,
-} from "@chakra-ui/react"
+import JulietStatus from './JulietStatus';
+import { Image, Box, Center, Text } from '@chakra-ui/react';
+import NavBar from './NavBar';
 
 const App = () => (
-    <Accordion defaultIndex={[0]} allowMultiple>
-        <AccordionItem>
-            <AccordionButton>
-                <Box flex="1" textAlign="left">
-                    Hi there, I'm Juliet Persia!
-      </Box>
-                <AccordionIcon />
-            </AccordionButton>
-            <AccordionPanel pb={4}>
-                If you see this, Juliet Persia will online in 30 minutes. If you want to increase my lifespan, just refresh my website!
-    </AccordionPanel>
-        </AccordionItem>
-
-        <AccordionItem>
-            <AccordionButton>
-                <Box flex="1" textAlign="left">
-                    Invite me to your discord server!
-      </Box>
-                <AccordionIcon />
-            </AccordionButton>
-            <AccordionPanel pb={4}>
-                click this <a href="https://discord.com/oauth2/authorize?client_id=802744454107758624&scope=bot">LINK</a> to summon me to your server! :D
-                Type ~help. for all the command lists!
-    </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-            <AccordionButton>
-                <Box flex="1" textAlign="left">
-                    Command lists:
-      </Box>
-                <AccordionIcon />
-            </AccordionButton>
-            <AccordionPanel pb={4}>
-                ~help : show command help <br />
-                ~hello : to greet you <br />
-                ~ani : for anime information <br />
-                ~covid TYPECOUNTRY (example ~covid usa): for covid information <br />
-                ~btc: information about bitcoin today <br />
-                ~mtg CARDNAME (example ~mtg avacyn): for MTG card information <br />
-            </AccordionPanel>
-        </AccordionItem>
-    </Accordion>
+    <>
+        <NavBar />
+        <Box m="3em">
+            <Center>
+            <Image src="https://raw.githubusercontent.com/CloverJoy/CloverJoy/master/assets/JulietPersia.gif" alt="Juliet Persia" />
+            </Center>
+        </Box>
+        <JulietStatus />
+        <Box m="3em">
+            <Center>
+            <Text mr ="0.5em">© 2021 - Made with  </Text>
+            💖 󠀠󠀠󠀠󠀠
+            <Text ml="0.5em">By CloverJoy </Text>
+            </Center>
+        </Box>
+    </>
 );
 
 export default App;
