@@ -8,7 +8,7 @@ const App = () => (
         <NavBar />
         <Box m="3em">
             <Center>
-            <Image src="https://raw.githubusercontent.com/CloverJoy/CloverJoy/master/assets/JulietPersia.gif" alt="Juliet Persia" />
+            <Image src="/JulietPersia.gif" alt="Juliet Persia" />
             </Center>
         </Box>
         <JulietStatus />

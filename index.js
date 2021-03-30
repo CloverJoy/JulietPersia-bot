@@ -4,11 +4,8 @@ const app = express();
 
 app.use(express.static('public'));
 const Discord = require('discord.js');
-const Filter = require('bad-words');
-const filter = new Filter();
 
-let indogsBadWords = ['ngentot', 'kontol', 'anjing', 'bangsat', 'memek', 'toket', 'bangsat', 'titit', 'jancok', 'falih', 'cibai', 'putang', 'bobo', 'kinang', 'pukimak', 'cibaikia', 'entot', 'kntl', 'mmk', 'putang ina', 'tang ina'];
-filter.addWords(...indogsBadWords);
+
 
 require('dotenv').config();
 
@@ -26,7 +23,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Jurieto Perushiaa desu!');
-	client.user.setActivity('Ver. 0.2 | type ~help', { type: 'STREAMING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
+	client.user.setActivity('you 💖 | type ~help', { type: 'LISTENING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
 });
 
 
@@ -40,9 +37,6 @@ client.on('message', message => {
 		message.reply('How can I help you? ~help for more information!');
 	}
 
-	if (filter.isProfane(message.content)) {
-		message.reply('Please stop saying that! 😞 ');
-	};
 	// End of troll only
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
