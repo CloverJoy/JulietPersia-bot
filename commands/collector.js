@@ -60,6 +60,11 @@ module.exports = {
             });
         })
         collone.on('end', () => {
+          if (data.korean && data.knowRocketPunch) {
+            message.author.send('SO COOL MAN!!')
+            return
+          }
+          message.author.send(':(')
           console.log(data)
         })
       })
