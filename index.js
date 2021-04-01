@@ -5,11 +5,9 @@ const app = express();
 app.use(express.static('public'));
 const Discord = require('discord.js');
 
-
-
 require('dotenv').config();
 
-const prefix = '~';
+const prefix = '-';
 const port = process.env.PORT || 3000;
 
 const client = new Discord.Client();
@@ -23,7 +21,8 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Jurieto Perushiaa desu!');
-	client.user.setActivity('you 💖 | type ~help', { type: 'LISTENING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
+	client.user.setActivity('Maintenance | type -help', { type: 'LISTENING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
+	client.user.setStatus('dnd');
 });
 
 
@@ -34,7 +33,7 @@ client.on('message', message => {
 			message.reply(' Hi master! how can I help you?  💖💖 ');
 			return;
 		}
-		message.reply('How can I help you? ~help for more information!');
+		message.reply('How can I help you? -help for more information!');
 	}
 
 	// End of troll only
