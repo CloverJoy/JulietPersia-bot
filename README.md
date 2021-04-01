@@ -9,3 +9,5 @@ Features:
 1. Search today anime and search anime
 2. Bitcoin price
 3. country covid19 information.
+4. Magic the gathering card information
+5. Timer for seconds, minutes, and hours
