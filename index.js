@@ -21,8 +21,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Jurieto Perushiaa desu!');
-	client.user.setActivity('Maintenance | type -help', { type: 'LISTENING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
-	client.user.setStatus('dnd');
+	client.user.setActivity('you 💖 | type -help', { type: 'LISTENING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
 });
 
 
@@ -33,9 +32,8 @@ client.on('message', message => {
 			message.reply(' Hi master! how can I help you?  💖💖 ');
 			return;
 		}
-		message.reply('How can I help you? -help for more information!');
+		message.author.send('How can I help you? -help for more information!');
 	}
-
 	// End of troll only
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
