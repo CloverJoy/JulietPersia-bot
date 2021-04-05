@@ -7,7 +7,7 @@ My first very own project, utility discord bot for my servers on Discord.
 Powered by Discord.JS & NodeJS. 
 Features:
 1. Search today anime and search anime
-2. Bitcoin price
+2. Crypto currency price with the conversion feature
 3. country covid19 information.
 4. Magic the gathering card information
 5. Timer for seconds, minutes, and hours
