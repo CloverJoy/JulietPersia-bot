@@ -5,8 +5,22 @@ const moment = require('moment');
 module.exports = {
 	name: 'crypto',
     description: 'To show the information about Bitcoin price now.',
-    args: true,
 	async execute(message, args) {
+        if (args.length === 0) {
+            const helpEmbed = new Discord.MessageEmbed()
+                .setColor('#ff9900')
+                .setTitle('Welcome to -crypto command')
+                .setDescription('Will return your current cryptocurrency rate and information')
+                .addFields(
+                    {name: 'arguments', value: '-crypto [CRYPTO SYMBOL/NAME (If more than one word, please use - for seperator)] [3 DIGIT CURRENCY CODE] [VALUE FOR CONVERSION(optional)]'},
+                    {name: 'note about first argument', value: 'Please use Symbol for more accurate result (ADA, BTC, etc.)'},
+                    {name: 'example 1', value: '-crypto eth usd'},
+                    {name: 'example 2', value: '-crypto the-graph gbp 10'},
+                    {name: 'example 3', value: '-crypto doge'},
+                )
+            message.reply(helpEmbed)
+            return
+        }
         const curr = args[1] || 'usd';
         if (curr.length !== 3) {message.reply('please insert correct 3 digit currency code (example: USD)'); return}
         const crypt = args[0].toLowerCase();
@@ -47,9 +61,9 @@ module.exports = {
                         .setTitle(`If you have ${args[2]} ${symbol.toUpperCase()}, you now have ${args[2] * current_price} ${curr.toUpperCase()}`)
                     const secondEmbed = new Discord.MessageEmbed()
                         .setColor('#ff9900')
-                        .setTitle(`If you have ${args[2]} ${curr.toUpperCase()}, you now have ${args[2] / current_price} ${symbol.toUpperCase()}`)
-                    message.reply(firstEmbed)
+                        .setTitle(`If you have ${args[2]} ${curr.toUpperCase()}, you can have ${args[2] / current_price} ${symbol.toUpperCase()}`)
                     message.reply(secondEmbed)
+                    message.reply(firstEmbed)
                 }
                 return
             }
