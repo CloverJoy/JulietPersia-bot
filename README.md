@@ -11,6 +11,6 @@ Features:
 3. country covid19 information.
 4. Magic the gathering card information
 5. Timer for seconds, minutes, and hours
-6. Next project, More crypto information and dynamic conversion, also working with collector 
+6. Next project, working with collector 
 
-Webpage powered with React, express, webpack. Deployment powered with Google cloud compute engine, docker, and docker-compose
+Webpage powered with React, Chakra-ui, express, webpack. Deployment powered with Google cloud compute engine, docker, and docker-compose
