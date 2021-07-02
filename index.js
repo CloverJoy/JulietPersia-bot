@@ -21,7 +21,8 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Jurieto Perushiaa desu!');
-	client.user.setActivity('you 💖 | type -help', { type: 'LISTENING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
+	// client.user.setActivity('you 💖 | type -help', { type: 'LISTENING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
+	client.user.setActivity('Maintenance', { type: 'LISTENING', url: 'https://www.youtube.com/watch?v=x8VYWazR5mE' });
 });
 
 
