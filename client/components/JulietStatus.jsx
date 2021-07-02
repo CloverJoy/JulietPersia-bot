@@ -18,7 +18,7 @@ const JulietStatus = () => (
                 <AccordionIcon />
             </AccordionButton>
             <AccordionPanel pb={4}>
-                If you see this, Juliet Persia Bot is ONLINE in version 0.2
+                If you see this, Juliet Persia Bot is ONLINE in version 0.4
     </AccordionPanel>
         </AccordionItem>
 
@@ -31,7 +31,7 @@ const JulietStatus = () => (
             </AccordionButton>
             <AccordionPanel pb={4}>
                 click this <a href="https://discord.com/oauth2/authorize?client_id=802744454107758624&scope=bot">LINK</a> to summon me to your server! :D
-                Type ~help. for all the command lists!
+                Type -help. for all the command lists!
     </AccordionPanel>
         </AccordionItem>
         <AccordionItem>

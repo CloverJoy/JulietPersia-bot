@@ -14,9 +14,9 @@ module.exports = {
                 .addFields(
                     {name: 'arguments', value: '-crypto [CRYPTO SYMBOL/NAME (If more than one word, please use - for seperator)] [3 DIGIT CURRENCY CODE] [VALUE FOR CONVERSION(optional)]'},
                     {name: 'note about first argument', value: 'Please use Symbol for more accurate result (ADA, BTC, etc.)'},
-                    {name: 'example 1', value: '-crypto eth usd'},
-                    {name: 'example 2', value: '-crypto the-graph gbp 10'},
-                    {name: 'example 3', value: '-crypto doge'},
+                    {name: 'example 1', value: '```-crypto eth usd```'},
+                    {name: 'example 2', value: '```-crypto the-graph gbp 10```'},
+                    {name: 'example 3', value: '```-crypto doge```'},
                 )
             message.reply(helpEmbed)
             return

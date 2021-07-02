@@ -7,10 +7,11 @@ const helpEmbed = new Discord.MessageEmbed()
 	.setImage('https://i.ytimg.com/vi/A5pchbPE2Rc/maxresdefault.jpg')
 	.setDescription('So you need help? Here is my help :D.')
 	.addFields([
-		{ name: 'Current command available', value: 'ver 0.2' },
+		{ name: 'Current command available', value: 'ver 0.4' },
 		{ name: 'Hello!', value: 'type -hello', inline: true },
 		{ name: 'Introduction', value: 'type -whoareyou', inline: true },
 		{ name: 'Help', value: 'type -help', inline: true },
+		{ name: 'Tarot Reading', value: 'type -tarot', inline: true },
 		{ name: 'Anime information!', value: 'type -ani', inline: true },
 		{ name: 'Cryptocurrency rate information!', value: 'type -crypto', inline: true },
 		{ name: 'Magic the gathering information', value: 'type -mtg [card name]', inline: true },

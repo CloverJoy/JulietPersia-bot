@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const axios = require('axios');
 const moment = require('moment');
-const today = moment().format('dddd').toLowerCase(); 
+const today = moment().format('dddd').toLowerCase();
 const todayComplete = moment().format('MMMM DD YYYY')
 const dates = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 const noNullNumber = (num) => {
     if (num === null) {
         return 'Not yet scored';
-    } 
+    }
     return num;
 }
 
@@ -21,16 +21,16 @@ module.exports = {
         if (args.length === 0) {
         const helpEmbed = new Discord.MessageEmbed()
 	        .setColor('#7fffd4')
-	        .setTitle('Welcome to ~ani Command ver 0.1')
+	        .setTitle('Welcome to -ani Command')
 	        .setAuthor('Juliet Persia', 'https://cdn.anisearch.com/images/character/cover/full/69/69174.jpg')
 	        .setImage('https://i.ytimg.com/vi/A5pchbPE2Rc/maxresdefault.jpg')
 	        .setDescription('I can search anime information for you :D')
 	        .addFields([
-		        { name: 'Command information', value: 'Prefix ~ani' },
-		        { name: `Today's anime!`, value: '```~ani today / ~ani today random```'},
-		        { name: `Anime Search`, value: '```~ani search YOURQUERY```'},
-                { name: `Manga Search`, value: '```~ani mangasearch YOURQUERY```' },
-                { name: `Character Search`, value: '```~ani chara YOURQUERY```' },
+		        { name: 'Command information', value: 'Prefix -ani' },
+		        { name: `Today's anime!`, value: '```-ani today / -ani today random```'},
+		        { name: `Anime Search`, value: '```-ani search YOURQUERY```'},
+                { name: `Manga Search`, value: '```-ani mangasearch YOURQUERY```' },
+                { name: `Character Search`, value: '```-ani chara YOURQUERY```' },
             ]);
             message.reply(helpEmbed);
             return;
@@ -61,7 +61,7 @@ module.exports = {
                 )
                 .setImage(data.image_url)
                 message.channel.send(todayEmbed);
-            });	
+            });
         }
         if (args.length === 1 && isToday) {
             message.reply(`Here is ongoing anime list for today`);
@@ -78,7 +78,7 @@ module.exports = {
                 }))
                 .setImage(data[0].image_url)
                 message.channel.send(listEmbed);
-            });	
+            });
         }
         if (args.length === 2 && (parseInt(args[1]) || parseInt(args[1]) === 0) && isToday) {
             const idx = Math.floor(parseInt(args[1]));
@@ -99,7 +99,7 @@ module.exports = {
             .setImage(data.image_url)
             message.reply(`Here is the information about ${data.title}`);
             message.channel.send(todayEmbed);
-        });	
+        });
         }
         if (isManga) {
             const query = (args.slice(1).join(' '));
@@ -128,7 +128,7 @@ module.exports = {
                 message.channel.send(mangaSearchEmbed);
             } else {
                 message.reply(`Sorry, I can't read your mind :cry: can you please provide me your query, sir?`)
-            }  
+            }
         }
         if (isAnime) {
             const query = (args.slice(1).join(' '));
@@ -156,14 +156,14 @@ module.exports = {
                 )
                 .setImage(data.image_url)
                 message.channel.send(animeSearchEmbed);
-                }  
+                }
                 catch {
                     console.log('Error in catching character data');
                     message.reply('Sorry, I have internal server error, or no query match :(')
                 }
             } else {
                 message.reply(`Sorry, I can't read your mind :cry: can you please provide me your query, sir?`)
-            }  
+            }
         }
         if (isChara) {
             const query = (args.slice(1).join(' '));
@@ -197,7 +197,7 @@ module.exports = {
                 }
             } else {
                 message.reply(`Sorry, I can't read your mind :cry: can you please provide me your query, sir?`)
-            }  
+            }
         }
 	},
 };
