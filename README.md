@@ -11,6 +11,7 @@ Features:
 3. country covid19 information.
 4. Magic the gathering card information
 5. Timer for seconds, minutes, and hours
-6. Next project, working with collector 
+6. Juliet now can read Tarot! 1 card and 3 cards spread! 
+7. Next project, working with collector 
 
 Webpage powered with React, Chakra-ui, express, webpack. Deployment powered with Google cloud compute engine, docker, and docker-compose
